@@ -1,0 +1,6 @@
+PRNCode.c:10:5:main	24	static
+PRNCode.c:32:6:PRN	80	static
+PRNCode.c:57:9:getFeedback	32	static
+PRNCode.c:68:6:shift	24	static
+PRNCode.c:75:9:getOutput	32	static
+PRNCode.c:90:6:PRN_alt	32	static
