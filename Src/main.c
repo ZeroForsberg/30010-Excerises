@@ -38,30 +38,58 @@ int main(void) {
 	clrscr();
 	printf("\n\n===========\n");
 
-	sinOp(0);
+	printSin(0);
 
-	//sinOp(45);
-	sinOp(64);
+	//printSin(45);
+	printSin(64); // 45
 
-	//sinOp(-78);
-	sinOp(-111);
+	//printSin(-78);
+	printSin(-111);
 
 
-	//sinOp(649);
-	sinOp(923);
+	//printSin(649);
+	printSin(923);
 
-	printf("\n-------\n");
+	printf("\n-------\n\n");
 
-	cosOp(0);
+	printCos(0);
 
-	//cosOp(45);
-	cosOp(64);
+	//printCos(45);
+	printCos(64);
 
-	//cosOp(-78);
-	cosOp(-111);
+	//printCos(-78);
+	printCos(-111);
 
-	//cosOp(649);
-	cosOp(923);
+	//printCos(649);
+	printCos(923);
+
+	printf("\n-------\n\n");
+
+	printf("%l\n",printFix(sinus(256)));
+	printf("%l\n",printFix(cosinus(256)));
+
+	printf("\n-------\n\n");
+
+	vector_t v = {1, 2};
+	int32_t angle = 256;
+	rotateVector(&v, angle);
+	printVec(v, angle);
+
+	vector_t a = {6, 4};
+	angle = -14;
+	rotateVector(&a, angle);
+	printVec(a, angle);
+
+	vector_t b = {-4, -4};
+	angle = 1280;
+	rotateVector(&b, angle);
+	printVec(b, angle);
+
+	vector_t c = {-4, 2};
+	angle = -50;
+	rotateVector(&c, angle);
+	printVec(c, angle);
+
 
 
 
