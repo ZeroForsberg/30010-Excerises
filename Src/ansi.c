@@ -186,10 +186,10 @@ return i << 2;
 int32_t sinus(int32_t i) {
 	//input int i out 16.16 tal/fixpoint
 	if (i < 0) {
-		return expand(-SIN[-i & 0x1FF]);
+		return -SIN[-i & 0x1FF];
 	}
 	else {
-		return expand(SIN[i & 0x1FF]);
+		return SIN[i & 0x1FF];
 	}
 }
 
@@ -197,23 +197,23 @@ int32_t cosinus(int32_t i) {
 	i += 128;
 	//input int i out 16.16 tal/fixpoint
 	if (i < 0) {
-		return expand(-SIN[-i & 0x1FF]);
+		return -SIN[-i & 0x1FF];
 	}
 	else {
-		return expand(SIN[i & 0x1FF]);
+		return SIN[i & 0x1FF];
 	}
 }
 
 int32_t printSin(int32_t x){
 	printf("Sin(%d%c): ",x,248);
-	printFix(sinus(x));
+	printFix(expand(sinus(x)));
 	printf("\n");
  }
 
 
 int32_t printCos(int32_t x){
 	printf("Cos(%d%c): ",x,248);
-	printFix(sinus(x+128));
+	printFix(expand(sinus(x+128)));
 	printf("\n");
  }
 
@@ -227,18 +227,29 @@ void rotateVector(vector_t *vec, int32_t angle){
 	int32_t x = vec->x;
 	int32_t y = vec->y;
 
-	vec->x = x * cosinus(angle) - y * sinus(angle);
-	vec->y = x * sinus(angle) + y * cosinus(angle);
+	vec -> x = FIX14_MULTI(x, cosinus(angle)) - FIX14_MULTI(y,   sinus(angle));
+	vec -> y = FIX14_MULTI(x, 	sinus(angle)) + FIX14_MULTI(y, cosinus(angle));
+
+	//vec->x = x * cosinus(angle) - y * sinus(angle);
+	//vec->y = x * sinus(angle) + y * cosinus(angle);
 
 }
 
 void printVec(vector_t v, int32_t angle){
-	//printf("Original: (%l, %l)\n",printFix(expand(v.x)),printFix(expand(v.y)));
-
 	printf("Rotated Vector: (");
-	printFix(v.x);
+	printFix(expand(v.x));
 	printf(",");
-	printFix(v.y);
-	printf("),%d%c\n",angle,248);
+	printFix(expand(v.y));
+	printf("),\t%d%c",angle,248);
+
+	/*printf(" | %d, %d",expand(v.x),expand(v.y));
+	printf(" | ");
+	printFix(expand(v.x));
+	printf(", ");
+	printFix(expand(v.y));
+	printf(" | %d, %d\n",expand(v.x) << 14,expand(v.y)>> 14);
+	*/
+
+	printf("\n");
 }
 

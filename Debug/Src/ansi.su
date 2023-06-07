@@ -16,4 +16,4 @@ ansi.c:207:9:printSin	16	static
 ansi.c:214:9:printCos	16	static
 ansi.c:221:6:initVector	16	static
 ansi.c:226:6:rotateVector	32	static
-ansi.c:235:6:printVec	24	static
+ansi.c:238:6:printVec	24	static

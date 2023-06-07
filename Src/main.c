@@ -65,31 +65,19 @@ int main(void) {
 
 	printf("\n-------\n\n");
 
-	printf("%l\n",printFix(sinus(256)));
-	printf("%l\n",printFix(cosinus(256)));
+	printf("%l\n",printFix(expand(sinus(256))));
+	printf("%l\n",printFix(expand(cosinus(256))));
 
 	printf("\n-------\n\n");
 
-	vector_t v = {1, 2};
-	int32_t angle = 256;
-	rotateVector(&v, angle);
+	vector_t v = {1 << FIX14_SHIFT, 2 << FIX14_SHIFT};
+	int32_t angle = 128;
 	printVec(v, angle);
 
-	vector_t a = {6, 4};
-	angle = -14;
-	rotateVector(&a, angle);
-	printVec(a, angle);
-
-	vector_t b = {-4, -4};
-	angle = 1280;
-	rotateVector(&b, angle);
-	printVec(b, angle);
-
-	vector_t c = {-4, 2};
-	angle = -50;
-	rotateVector(&c, angle);
-	printVec(c, angle);
-
+	for (int i=0; i<4;i++){
+		rotateVector(&v, angle);
+		printVec(v, angle);
+	}
 
 
 
