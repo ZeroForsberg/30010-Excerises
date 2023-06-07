@@ -29,7 +29,9 @@ Src/main.o: ../Src/main.c \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/SPL/inc/stm32f30x_usart.h \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/SPL/inc/stm32f30x_wwdg.h \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/SPL/inc/stm32f30x_misc.h \
- C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/30010_io.h
+ C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/30010_io.h \
+ C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/ansi.h \
+ C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/LUTsin.h
 
 C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/stm32f30x_conf.h:
 
@@ -92,3 +94,7 @@ C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/SPL/inc/stm32f30x_wwdg.h:
 C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/SPL/inc/stm32f30x_misc.h:
 
 C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/30010_io.h:
+
+C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/ansi.h:
+
+C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/LUTsin.h:

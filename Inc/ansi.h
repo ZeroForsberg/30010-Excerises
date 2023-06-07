@@ -5,6 +5,7 @@
 
 #include "stdint.h"
 #include "stdio.h"
+#include "LUTsin.h"
 
 void fgcolor(uint8_t foreground);
 void bgcolor(uint8_t background);
