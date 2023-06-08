@@ -64,7 +64,8 @@ int main(void) {
 	printCos(923);
 
 	printf("\n-------\n\n");
-
+*/
+	/*
 	printf("%l\n",printFix(expand(sinus(256))));
 	printf("%l\n",printFix(expand(cosinus(256))));
 
@@ -82,28 +83,33 @@ int main(void) {
 
 	clrscr();
 
-/*
-	gotoxy(0,0);
-	printf("(0,0)");
+	boarder b = {2,2,110,36};
 
-	gotoxy(10,0);
-	printf("(10,0)");
+	windowBall(b,"Ball");
 
-	gotoxy(0,10);
-	printf("(0,10)");
+	ball_st o = {5,5, 1 << FIX14_SHIFT, 1 << FIX14_SHIFT, 0};
 
-	gotoxy(10,10);
-	printf("(10,10)");
-*/
+	int32_t angle = 128;
 
+	//rotateBall(&o, angle);
+	//ballDebug(o);
 
+	int i =0;
 
-	windowBall(5,5,110,40,"Ball");
-
-
-	//window(10,15,10,25,"Inner Box",1);
 
 	while (1) {
+		ballMove(&o, b);
+		ballDraw(o);
+
+		//ballDebug(o);
+
+
+		if (i >= 1){
+
+			i = 0;
+		}
+
+		i++;
 	}
 }
 

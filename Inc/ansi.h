@@ -1,6 +1,8 @@
 
 #ifndef _ANSI_H_
 #define _ANSI_H_
+
+
 #define ESC 0x1B
 
 #include "stdint.h"
@@ -20,6 +22,16 @@ void color(uint8_t foreground, uint8_t background);
 typedef struct{
 	int32_t x, y;
 } vector_t;
+
+typedef struct{
+	int32_t pX, pY, vX, vY, hit;
+} ball_st;
+
+typedef struct{
+	int32_t x1, y1, x2, y2;
+} boarder;
+
+
 
 
 #endif _ANSI_H_
