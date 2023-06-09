@@ -6,7 +6,13 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Src/30010_io.c \
+../Src/Joystick.c \
+../Src/LED.c \
+../Src/LUTsin.c \
+../Src/Vector.c \
+../Src/Window.c \
 ../Src/ansi.c \
+../Src/ball.c \
 ../Src/main.c \
 ../Src/syscalls.c \
 ../Src/sysmem.c \
@@ -14,7 +20,13 @@ C_SRCS += \
 
 OBJS += \
 ./Src/30010_io.o \
+./Src/Joystick.o \
+./Src/LED.o \
+./Src/LUTsin.o \
+./Src/Vector.o \
+./Src/Window.o \
 ./Src/ansi.o \
+./Src/ball.o \
 ./Src/main.o \
 ./Src/syscalls.o \
 ./Src/sysmem.o \
@@ -22,7 +34,13 @@ OBJS += \
 
 C_DEPS += \
 ./Src/30010_io.d \
+./Src/Joystick.d \
+./Src/LED.d \
+./Src/LUTsin.d \
+./Src/Vector.d \
+./Src/Window.d \
 ./Src/ansi.d \
+./Src/ball.d \
 ./Src/main.d \
 ./Src/syscalls.d \
 ./Src/sysmem.d \
@@ -36,7 +54,7 @@ Src/%.o: ../Src/%.c Src/subdir.mk
 clean: clean-Src
 
 clean-Src:
-	-$(RM) ./Src/30010_io.d ./Src/30010_io.o ./Src/ansi.d ./Src/ansi.o ./Src/main.d ./Src/main.o ./Src/syscalls.d ./Src/syscalls.o ./Src/sysmem.d ./Src/sysmem.o ./Src/system_stm32f30x.d ./Src/system_stm32f30x.o
+	-$(RM) ./Src/30010_io.d ./Src/30010_io.o ./Src/Joystick.d ./Src/Joystick.o ./Src/LED.d ./Src/LED.o ./Src/LUTsin.d ./Src/LUTsin.o ./Src/Vector.d ./Src/Vector.o ./Src/Window.d ./Src/Window.o ./Src/ansi.d ./Src/ansi.o ./Src/ball.d ./Src/ball.o ./Src/main.d ./Src/main.o ./Src/syscalls.d ./Src/syscalls.o ./Src/sysmem.d ./Src/sysmem.o ./Src/system_stm32f30x.d ./Src/system_stm32f30x.o
 
 .PHONY: clean-Src
 

@@ -1,0 +1,4 @@
+Joystick.c:5:6:intiJoystick	4	static
+Joystick.c:102:9:readJoystick	56	static
+Joystick.c:129:6:initLed	4	static
+Joystick.c:184:6:writeLed	56	static
