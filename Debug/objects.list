@@ -21,9 +21,6 @@
 "./SPL/src/stm32f30x_usart.o"
 "./SPL/src/stm32f30x_wwdg.o"
 "./Src/30010_io.o"
-<<<<<<< Updated upstream
-"./Src/ansi.o"
-=======
 "./Src/Joystick.o"
 "./Src/LCD.o"
 "./Src/LED.o"
@@ -34,7 +31,6 @@
 "./Src/ball.o"
 "./Src/buzzer.o"
 "./Src/charset.o"
->>>>>>> Stashed changes
 "./Src/main.o"
 "./Src/syscalls.o"
 "./Src/sysmem.o"

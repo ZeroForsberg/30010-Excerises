@@ -1,0 +1,6 @@
+ball.c:3:6:initBall	16	static
+ball.c:12:6:rotateBall	32	static
+ball.c:20:6:ballMove	40	static
+ball.c:91:6:updateHit	32	static
+ball.c:114:6:ballDraw	8	static
+ball.c:129:6:ballDebug	16	static
