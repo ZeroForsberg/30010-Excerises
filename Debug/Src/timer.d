@@ -1,4 +1,6 @@
-Src/main.o: ../Src/main.c \
+Src/timer.o: ../Src/timer.c \
+ C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/ansi.h \
+ C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/LUTsin.h \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/stm32f30x_conf.h \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/SPL/inc/stm32f30x_adc.h \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/stm32f30x.h \
@@ -29,16 +31,11 @@ Src/main.o: ../Src/main.c \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/SPL/inc/stm32f30x_usart.h \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/SPL/inc/stm32f30x_wwdg.h \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/SPL/inc/stm32f30x_misc.h \
-<<<<<<< Updated upstream
- C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/30010_io.h
-=======
- C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/30010_io.h \
- C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/ansi.h \
- C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/LUTsin.h \
- C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/timer.h \
- C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/LCD.h \
- C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/charset.h
->>>>>>> Stashed changes
+ C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/timer.h
+
+C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/ansi.h:
+
+C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/LUTsin.h:
 
 C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/stm32f30x_conf.h:
 
@@ -100,17 +97,4 @@ C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/SPL/inc/stm32f30x_wwdg.h:
 
 C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/SPL/inc/stm32f30x_misc.h:
 
-C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/30010_io.h:
-<<<<<<< Updated upstream
-=======
-
-C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/ansi.h:
-
-C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/LUTsin.h:
-
 C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/timer.h:
-
-C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/LCD.h:
-
-C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/charset.h:
->>>>>>> Stashed changes

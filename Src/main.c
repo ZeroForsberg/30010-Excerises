@@ -1,11 +1,17 @@
 #include "stm32f30x_conf.h" // STM32 config
 #include "30010_io.h" 		// Input/output library for this course
+<<<<<<< Updated upstream
 
 uint8_t getOutput(uint8_t P1[10], uint8_t P2[10], uint8_t *O1, uint8_t *O2, uint8_t N1, uint8_t N2);
 uint8_t getFeedback(uint8_t P[10], uint8_t *FB, uint8_t N);
 void shift(uint8_t P[10]);
 void PRN(uint8_t *code, uint16_t N);
 void PRN_alt(uint8_t* code, int16_t N);
+=======
+#include "ansi.h"
+#include "timer.h"
+#include "LCD.h"
+>>>>>>> Stashed changes
 
 int main(void)
 {
@@ -15,8 +21,8 @@ int main(void)
 	uint8_t code[10];
 
 	// Setup communication with the PC
-	uart_init(9600);
-
+	uart_init(115200);
+	clrscr();
 	/*
 	color(15,0);
 	underline(0);
@@ -38,7 +44,13 @@ int main(void)
 	//clreol();
 	//gotoxy(2,2);
 
+<<<<<<< Updated upstream
 	clrscr();
+=======
+
+/*
+	boarder b = {2,2,110,36};
+>>>>>>> Stashed changes
 
 	window(0,0,10,2,"Hello Wolrd",1);
 
@@ -46,7 +58,66 @@ int main(void)
 
 	window(5,5,30,10,"Hello Wolrd3",1);
 
+<<<<<<< Updated upstream
 	while(1){}
+=======
+	//rotateBall(&o, angle);
+	//ballDebug(o);
+*/
+
+/*
+	intiJoystick();
+
+	initLed();
+
+	reJoy_s j = {};
+	gotoxy(0,0);
+
+
+
+	//t = {.ml = 0, 0, 0, 0};
+	windowTimer();
+	initTimer();
+
+	t.hr = 0;
+	t.mn = 0;
+	t.sk = 0;
+	t.ml = 0;
+
+
+			//updateTime();
+		drawTime();
+
+		readJoystick(&j);
+		writeLed(j);
+*/
+
+
+	//initTimer2();
+	//initBuzz();
+
+	initLed();
+	lcd_init();
+	writeLed();
+	memset(buffer, 0x00, 512);
+	initTimer();
+
+	char navn[] = "Hello World";
+	int p = 0;
+
+
+	while (1) {
+		if(lcdUpdate == 20){
+		lcd_update(navn, p);
+		p++;
+		lcdUpdate = 0;
+		}
+		writeLed();
+		gotoxy(1, 1);
+		printf("%02d, %d", lcdUpdate, p);
+
+	}
+>>>>>>> Stashed changes
 }
 
 

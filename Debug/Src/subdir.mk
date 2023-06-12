@@ -6,27 +6,69 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Src/30010_io.c \
+<<<<<<< Updated upstream
 ../Src/ansi.c \
+=======
+../Src/Joystick.c \
+../Src/LCD.c \
+../Src/LED.c \
+../Src/LUTsin.c \
+../Src/Vector.c \
+../Src/Window.c \
+../Src/ansi.c \
+../Src/ball.c \
+../Src/buzzer.c \
+../Src/charset.c \
+>>>>>>> Stashed changes
 ../Src/main.c \
 ../Src/syscalls.c \
 ../Src/sysmem.c \
-../Src/system_stm32f30x.c 
+../Src/system_stm32f30x.c \
+../Src/timer.c 
 
 OBJS += \
 ./Src/30010_io.o \
+<<<<<<< Updated upstream
 ./Src/ansi.o \
+=======
+./Src/Joystick.o \
+./Src/LCD.o \
+./Src/LED.o \
+./Src/LUTsin.o \
+./Src/Vector.o \
+./Src/Window.o \
+./Src/ansi.o \
+./Src/ball.o \
+./Src/buzzer.o \
+./Src/charset.o \
+>>>>>>> Stashed changes
 ./Src/main.o \
 ./Src/syscalls.o \
 ./Src/sysmem.o \
-./Src/system_stm32f30x.o 
+./Src/system_stm32f30x.o \
+./Src/timer.o 
 
 C_DEPS += \
 ./Src/30010_io.d \
+<<<<<<< Updated upstream
 ./Src/ansi.d \
+=======
+./Src/Joystick.d \
+./Src/LCD.d \
+./Src/LED.d \
+./Src/LUTsin.d \
+./Src/Vector.d \
+./Src/Window.d \
+./Src/ansi.d \
+./Src/ball.d \
+./Src/buzzer.d \
+./Src/charset.d \
+>>>>>>> Stashed changes
 ./Src/main.d \
 ./Src/syscalls.d \
 ./Src/sysmem.d \
-./Src/system_stm32f30x.d 
+./Src/system_stm32f30x.d \
+./Src/timer.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -36,7 +78,11 @@ Src/%.o: ../Src/%.c Src/subdir.mk
 clean: clean-Src
 
 clean-Src:
+<<<<<<< Updated upstream
 	-$(RM) ./Src/30010_io.d ./Src/30010_io.o ./Src/ansi.d ./Src/ansi.o ./Src/main.d ./Src/main.o ./Src/syscalls.d ./Src/syscalls.o ./Src/sysmem.d ./Src/sysmem.o ./Src/system_stm32f30x.d ./Src/system_stm32f30x.o
+=======
+	-$(RM) ./Src/30010_io.d ./Src/30010_io.o ./Src/Joystick.d ./Src/Joystick.o ./Src/LCD.d ./Src/LCD.o ./Src/LED.d ./Src/LED.o ./Src/LUTsin.d ./Src/LUTsin.o ./Src/Vector.d ./Src/Vector.o ./Src/Window.d ./Src/Window.o ./Src/ansi.d ./Src/ansi.o ./Src/ball.d ./Src/ball.o ./Src/buzzer.d ./Src/buzzer.o ./Src/charset.d ./Src/charset.o ./Src/main.d ./Src/main.o ./Src/syscalls.d ./Src/syscalls.o ./Src/sysmem.d ./Src/sysmem.o ./Src/system_stm32f30x.d ./Src/system_stm32f30x.o ./Src/timer.d ./Src/timer.o
+>>>>>>> Stashed changes
 
 .PHONY: clean-Src
 

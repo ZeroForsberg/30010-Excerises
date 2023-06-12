@@ -1,0 +1,2 @@
+LCD.c:7:6:lcd_write_string	40	static
+LCD.c:28:6:lcd_update	16	static
