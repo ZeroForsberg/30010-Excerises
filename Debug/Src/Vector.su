@@ -1,0 +1,9 @@
+Vector.c:3:6:printFix	16	static
+Vector.c:13:9:expand	16	static
+Vector.c:18:9:sinus	16	static
+Vector.c:27:9:cosinus	16	static
+Vector.c:37:9:printSin	16	static
+Vector.c:43:9:printCos	16	static
+Vector.c:49:6:initVector	16	static
+Vector.c:54:6:rotateVector	32	static
+Vector.c:63:6:printVec	24	static

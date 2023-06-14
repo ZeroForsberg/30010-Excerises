@@ -95,9 +95,6 @@ extern void SystemCoreClockUpdate(void);
 
 #endif /*__SYSTEM_STM32F30X_H */
 
-/**
-  * @}
-  */
   
 /**
   * @}

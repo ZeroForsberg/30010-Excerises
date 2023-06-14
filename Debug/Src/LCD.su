@@ -1,0 +1,6 @@
+LCD.c:6:6:lcdWrite	40	static
+LCD.c:23:6:lcdScrollText	16	static
+LCD.c:30:5:lcd_write_string_scroll	40	static
+LCD.c:43:5:lcd_update_scroll	16	static
+LCD.c:50:6:lcd_write_string	40	static
+LCD.c:73:6:lcd_update	16	static
