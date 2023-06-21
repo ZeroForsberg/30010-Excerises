@@ -1,0 +1,8 @@
+core_cm4.h:1071:22:NVIC_EnableIRQ	16	static
+core_cm4.h:1156:22:NVIC_SetPriority	16	static
+buzzer.c:7:6:initTimer2	8	static
+buzzer.c:32:6:TIM2_IRQHandler	4	static
+buzzer.c:45:6:initBuzz	8	static
+buzzer.c:68:6:updateBuzz	4	static
+buzzer.c:92:6:playTone	40	static
+buzzer.c:333:6:setFreq	24	static

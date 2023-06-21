@@ -1,52 +1,152 @@
 #include "stm32f30x_conf.h" // STM32 config
 #include "30010_io.h" 		// Input/output library for this course
+#include "ansi.h"
+#include "timer.h"
+#include "LCD.h"
+#include "joystick.h"
+#include "asteroid.h"
 
-uint8_t getOutput(uint8_t P1[10], uint8_t P2[10], uint8_t *O1, uint8_t *O2, uint8_t N1, uint8_t N2);
-uint8_t getFeedback(uint8_t P[10], uint8_t *FB, uint8_t N);
-void shift(uint8_t P[10]);
-void PRN(uint8_t *code, uint16_t N);
-void PRN_alt(uint8_t* code, int16_t N);
-
-int main(void)
-{
-
-	// Prepare variables
-	uint8_t i;
-	uint8_t code[10];
-
+int main(void) {
 	// Setup communication with the PC
-	uart_init(9600);
-
-	/*
-	color(15,0);
-	underline(0);
-	blink(1);
-	// Calculate PRN code
-	printf("SV1 PRN: ");
-	PRN(code,10);
-
-
-	underline(1);
-	blink(0);
-	// Print code
-	for (i = 0 ; i < 10 ; i++){
-		printf("%d,",code[i]);
-	}
-	printf("...\n");
-	*/
-	//clrscr();
-	//clreol();
-	//gotoxy(2,2);
+	uart_init(112500);
 
 	clrscr();
 
-	window(0,0,10,2,"Hello Wolrd",1);
+	// Setup LEDs
+	initLed();
+	writeLed();
 
-	window(2,2,20,5,"Hello Wolrd2",2);
+	gotoxy(1,6);
+	printf("R:%d, G:%d, B:%d",led.red, led.gre, led.blu);
 
-	window(5,5,30,10,"Hello Wolrd3",1);
+	// Setup Joystick
+	intiJoystick();
 
-	while(1){}
+	// Setup Timers with Buzzer
+	initTimer();
+	initTimer2();
+	initBuzz();
+	setFreq(0);
+
+	refreshRate = 8;
+
+//	lcd_init();
+//	memset(buffer, 0x00, 512);
+//	char navn[] = "Hello World! ";
+//	placeLCD = 128;
+
+
+//	char meg[] = " 3f  3d 3f 3g 2b 2b 4d  3a   3G  3g  3f  3d 3f 3g 2A 2A 4d  3a   3G  3g  3f  3d 3f 3g 3d 3d 4d  3a   3G  3g  3f  3d 3f 3g 3c 3c 4d  3a   3G  3g  3f  3d 3f 3g 2b 2b 4d  3a   3G  3g  3f  3d 3f 3g 2A 2A 4d  3a   3G  3g  3f  3d 3f 3g 3d 3d 4d  3a   3G  3g  3f  3d 3f 3g 3c 3c 4d  3a   3G  3g  3f  3d 3f 3g 2b 2b 4d  3a   3G  3g  3f  3d 3f 3g 2A 2A 4d  3a   3G  3g  3f  3d 3f 3g 3d 3d 4d  3a   3G  3g  3f  3d 3f 3g 3c 3c 4d  3a   3G  3g  3f  3d 3f 3g 2b 2b 4d  3a   3G  3g  3f  3d 3f 3g 2A 2A 4d  3a   3G  3g  3f  3d 3f 3g 3f  3f 3f  3f  3f  3d  3d   3d  3f 3f 3f 3f  3g  3G  3g 3f 3d 3f 3g   3f  3f 3f  3g  3G  3a  4c  3a   4d  4d  4d 3a 4d 4c         3a  3a 3a  3a  3a  3g  3g     3a  3a 3a  3a  3g  3a  4d  3a 3g  4d  3a  3g  3f  4c  3a  3g  3f  3d  3e 3f  3a  4c                 3f 3d 3f 3g 3G 3g 3f 3d 3G 3g 3f 3d 3f 3g         3G  3a 4c  3a 3G 3g 3f 3d 3e 3f  3g  3G  4c   4C  3G  3G 3g 3f 3g         2f  2g  2a  3f  3e    3d    3e    3f    3g    3e    3a        3a 3G 3g 3F 3f 3e 3D 3d 3C        3D                3f 3d 3f 3g 3G 3g 3f 3d 3G 3g 3f 3d 3e 3g         3G  3a  4c  3a 3G 3g 3f 3d 3e 3f  3g  3a  4c  4C  3G  3G 3g 3f 3g       2f  2g  2a  3f  3e    3d    3e    3D 3d 3C        3D          2b      3f                                2b            3f    3e        3d            3d                                2b            3f    3e        3d        3f                                2b            3f    3e    3d 3d 4d  3a   3G  3g  3f  3d 3f 3g 3d 3d 4d  3a   3G  3g  3f  3d 3f 3g 3C 3C 4d  3a   3G  3g  3f  3d 3f 3g 3c 3c 4d  3a   3G  3g  3f  3d 3f 3g 3d 3d 4d  3a   3G  3g  3f  3d 3f 3g 3d 3d 4d  3a   3G  3g  3f  3d 3f 3g 3C 3C 4d  3a   3G  3g  3f  3d 3f 3g 3c 3c 4d  3a   3G  3g  3f  3d 3f 3g                          ";
+//
+//	char doom[] = "2D 2D 3D 2D 2D 3C 2D 2D 2b 2D 2D 2a  2D 2A 2b 2D 2D 3D 2D 2D 3C 2D 2D 2b 2D 2D  2a    2D 2D 3D 2D 2D 3C 2D 2D 2b 2D 2D 2a 2D 2D 2A 2b 2D 2D 3D 2D 2D 3C 2D 2D 2b 2D 2D 2a      2D 3D 2D 2D 3C 2D 2D 2b 2D 2D 2a 2D  2A 2b 2D 2D 3D 2D 2D 3C 2D 2D 2b 2D 2D 2a     2D 2D 3D 2D 2D 3C 2D 2D 2b 2D 2D 2a 2D 2D 2A 2b 2D 2D 3D 2D 2D 3C 2D 2D 4f 4D 4f 4F 4d 4F 4A 4F 4d2D 2D 3D 2D 2D 3C 2D 2D 2b 2D 2D 2a 2D  2A 2b 2D 2D 3D 2D 2D 3C 2D 2D 2b 2D 2D 2a     2D 2D 3D 2D 2D 3C 2D 2D 2b 2D 2D 2a 2D  2A 2b 2D 2D 3D 2D 2D 3C 2D 2D 4A 4F4D 4F4A 4F4A 4A 4F4A 4F4A  2G 2G 3G 2G 2G 3F 2G 2G 3e 2G 2G 3d 2G 2G 3D 3e 2G 2G 3G 2G 2G 3F 2G 2G 3e 2G 2G 3d     2G 2G 3G 2G 2G 3F 2G 2G 3e 2G 2G 3d 2G 2G 3D 3e 2G 2G 3G 2G 2G 3F 2G 2G  3b 3b 3b3G 4G 3b 3b 3G3b 2D 2D 3D 2D 2D 3C 2D 2D 2b 2D 2D 2a 2D  2A 2b 2D 2D 3D 2D 2D 3C 2D 2D 2b 2D 2D 2a     2D 2D 3D 2D 2D 3C 2D 2D 2b 2D 2D 2a 2D 2D 2A 2b 2D 2D 3D 2D 2D 3C 2D 2D 3A 2A 2A 3G 2A 2A 3F 2a 2G 3e     2D 2D 3D 2D 2D 3C 2D 2D 2b 2D 2D 2a 2D 2D 2A 2b 2D 2D 3D 2D 2D 3C 2D 2D 4D4F 3F3A 4D3A 4F4D 4F4D 3F3A 4D4F 4A 2D 2D 3D 2D 2D 3C 2D 2D 2b 2D 2D 2a 2D 2D 2A 2b 2D 2D 3D 2D 2D 3C 2D 2D 2b 2D 2D  2a    2D 2D 3D 2D 2D 3C 2D 2D 2b 2D 2D 2D2a 2D  2A 2b 2D 2D 3D 2D 2D 3C 2D 2D 4d3b 3f3A 4f4d 3G3A 4G4f 4d 4A4G3A 4f4d 2D 2D 3F 2D 2D 3f 2D 2D 3d 2D 2D 3C2D 2D  3C 3D 2D 2D 3F 2D 2D 3f 2D 2D 3D 2D 2D  3c    2D 2D 3F 2D 2D 3f 2D 2D 3d 2D 2D 3C     2D 2D 3F 2D 2D 3f 2D 2D 6D4A 4F 6D4D4A 4A4F 4D4F 4A4F 6D4A 4F4D 2G 2G 3b 2G 2G 3A 2G 2G 3g 2G 2G 3F 2G  3F 3G 2G 2G 3b 2G 2G 3A 2G 2G 3G 2G 2G  3F    2G 2G 3b 2G 2G 3A 2G 2G 3g 2G 2G 3F 2G 2G 3F 3G 2G 2G 3b 2G 2G 3A 2G 2G 4D4C 4D3b 3G3b 4D3b 4G4D 4D3b 4D3b 3G3b 2D 2D 3F 2D 2D 3f 2D 2D 3d 2D 2D 3C 2D  3C 3D 2D 2D 3F 2D 2D 3f 2D 2D 3D 2D   3c    2D 2D 3F 2D 2D 3f 2D 2D 3d 2D 2D 3C2D 2D  3C 3D 2D 2D 3F 2D 2D 3f 2D 2D 3D 2D 2D 3c     3c 3c 4F 3c 3c 4f 3c 3c 4D 3c 3c 4c 3c 3c 4c 4D 2A 2A 4f 2A 2A 4D 2A 2A 4d 2a 2G 3A     2D 2D 3F 2D 2D 3f 2D 2D 3d 2D 2D 3C 2D  3C 3D 2D 2D 3F 2D 2D 3f 2D 2D  4d 3G3A 3d3f 2A  4f4d3A 3f3G 3d  3D                     ";
+//	char bustin[] = "2d  4d  4C  4d  2A  4d  4C  4d  2a  4d  4C  4d  2G  4d  4C  4d  2g  4d  4C  4d  3f  4d  4C  4d  3C  4d  4C  4d  4C  4d  4C  4d  2d  2d  2f 2F 2a  3c    2b    2d  2d  2f 2F 2a  3c    2b    2d  2d  2f 2F 2a  3c    2b    2d  2d  2f 2F 2a  3c    2b    2d  2d  2f 2F 2a  3c    2b    2d  2d  2f 2F 2a  3c    2b    2d  2d  2f 2F 2a  3c    2b    2d  2d  2f 2F 2a  3c    2b    2d  2d  2f 2F 2a  3c    2b    2d  2d  2f 2F 2a  3c    2b    2d  2d  2f 2F 2a  3c    2b    2d  2d  2f 2F 2a  3c    2b    2d  2d  2f 2F 2a  3c    2b    2d  2d  2f 2F 2a  3c    2b    3f   3d   3f   3d   3f   3d  3f  3d  3c 3C 3d  3f   3d   3f   3d   3f   3d  3f  3d  3c 3C 2d  2d  2f 2F 2a  3c    2b    2d  2d  2f 2F 2a  3c    2b       ";
+//	char ballin[] = "2b 2b 2b 2b  3c   2b 2a   2g 2b   3d 3d 3d 3d 2b  3d 3d 3d 3d 3d 3d 3d 3e   3d 3d 3d 3d 3d 3e   2b 2a   2g 2g   3d 3d 3d 3d 3d 3e   2b 2a   2g 2g 2b 2b 2b 3c 2b 2a 2g 2a  2a 2g 2a  2b   2b 2b 2b 3c 2b 2a 2g 2a  2a 2g 3d  2b   2b 2b 2b 2b 2b 2a 2g 2a  2a 2g 3d  2b   3d 3d 3e  2b 2b 2a  2a 2a 2g 3d  2b   2b 2b 2b 3c 2b 2a 2g 2a 2g 2a 2g 2a  2e      3e 3d 3c 2b 2b 2b 2a 2g 2a  2g    2g 2g 3d 3d 3c 2b 2b  2a 2g 2a  2g   2b 2b 2b 2b 2b 2a 2g 2a  2a 2a 2a 2g 2b   3d 3d 3d 3d 3d 3d 2b 2a 2a 2a 2a 2a 2g 2b  2g  3d 3d 3d 3d 3d 3d 3e 2b 2a 2a 2a 2g 2b  2g  3d 3d 3d 3d 3d 3d 3e 2b 2b 2a 2a 2g 2b  2g   2b 2b 2b 3d 3d 2a   2a 2a 2g 2b  2e    3d 3d 3e 2b 2b   3d 3d 3d 3e  2b  3d  3d 2b 3d 3d 3d 2b 2a 2a 2a 2g 2b  2g        3e  2b 2b 2b 2b 2b  2g  3d 3d 3d 3d 3d 3d 3e 2b 2a 2a 2a 2g 2b  2g    3d  3c 2b 2b 2a 2a 2g 2a  2b   3d 3d 3d 3d 2b 3d  3d  3c 2b 2a  2b   3d 3d 3d 3d 2b 3d 3d 3d 3c 2b 2a 2a  2b   3d 3d 3d 3e          3c          3c   2b 2a   2g 2b   3d 3d 3d 3d 2b  3d 3d 3d 3d 3d 3d 3d 3e   3d 3d 3d 3d 3d 3e   2b 2a   2g 2g   3d 3d 3d 3d 3d 3e   2b 2a   2g 2g 2b 2b 2b 3c 2b 2a 2g 2a  2a 2g 2a  2b   2b 2b 2b 3c 2b 2a 2g 2a  2a 2g   2b   2b 2b 2b 2b 2b 2a 2g 2a  2a 2g   2b   3d 3d 3e  2b 2b 2a  2a 2a 2g 3d  2b         ";
+//
+//	char virus[] ="2e  2a  2b  3c      3d  2b      3c  2a          2a 2G 2a 2b 3c 3d 3e    3e    3e    3e    3e            3d  3e  3f        2b    3c  3d  3e        2a    2a  2b  3c      3d  2b      3c  2a          2e  2a  2b  3c      3d  2b      3c  2a          2a 2G 2a 2b 3c 3d 3e    3e    3e    3e    3e            3d  3e  3f        2b    3c  3d  3e        2a    2a  2b  3c      3d  2b      3c  2a          2e  2a  2b  3c      3d  2b      3c  2a          2a  2G  2a  2b  2e  2D  2e  2b  2e  3e  3d  3d  3c  2b  2a  2a  2b  3c  2a  2b  2g  2F  2g  2b  2g  3g  3f  3f  3e  3d  3c  3c  3d  3e  3c  3C  2a  3C  3e  3a    3g    3f  3e  3d  3C  3d  2a  2G  2a                            3a  3b  3e  3e      3d 3c 2b  3c  3d  2e  3c  2b  2a  2G  2a  2b  3c  2a  2b     2g  2b  3g                 2b              3A  3g  3A  3e  3a  3g  3a  3f  3a  3e  3a  3D      2b  3D  4c    3D    3b    2d  2e  2f  2g  2f  2e  2d          2e  2a  2b  3c      3d  2b      3c  2a          2a 2G 2a 2b 3c 3d 3e    3e    3e    3e    3e            3d  3e  3f        2b    3c  3d  3e        2a    2a  2b  3c      3d  2b      3c  2a          2e  2a  2b  3c      3d  2b      3c  2a          2a 2G 2a 2b 3c 3d 3e    3e    3e    3e    3e            3d  3e  3f        2b    3c  3d  3e        2a    2a  2b  3c      3d  2b      3c  2a          2e  2a  2b  3c      3d  2b      3c  2a          2e  2a  2b  3c    3d  2b    3c  2a      2a  2G  2a  2b  3c  3d  3e    3e  3e    3e  3a      3d  3e  3f      2b  3c  3d  3e      2a    3c    2b                                                       ";
+
+//	windowSmp(1,1,225,77);
+
+	t.mn = 0;
+	t.sk = 10;
+	t.state = 0;
+
+//	for (int i = 2; i < 255;){
+//		gotoxy(i,2);
+//		printf("+");
+//		i = i + 5;
+//	}
+//
+//
+//	for (int i = 2; i < 77; i++){
+//		gotoxy(2,i);
+//		printf("%d",i);
+//	}
+//
+//	for (int i = 15; i < 77;){
+//		gotoxy(4,i);
+//		printf("-");
+//		i = i + 24;
+//	}
+//
+//	initAstro();
+
+	windowSmp(1,2,43,4);
+
+	// initilize keyboard input:
+//	int i=0;
+//	uart_clear();
+//	char random;
+//	int buffer_lenght;
+
+	while (1) {
+
+		if (lcdUpdate == 0){
+//			lcd_update_scroll(navn, placeLCD);
+//			playTone(virus);
+//			asteroidUpdate();
+			drawTime();
+		}
+
+
+
+//			random = uart_get_char();
+//
+//			switch(random){
+//			case 'w':
+//				key.up = 1;
+//				break;
+//			case 's':
+//				key.down = 1;
+//				break;
+//			case 'e':
+//				key.center = 1;
+//				break;
+//			}
+
+		//debug and read values:
+//		if (1){
+//		gotoxy(10,11);
+//		printf("w: %d",key.up);
+//
+//		gotoxy(10,12);
+//		printf("a: %d",key.left);
+//
+//		gotoxy(10,13);
+//		printf("s: %d",key.down);
+//
+//		gotoxy(10,14);
+//		printf("d: %d",key.right);
+//
+//		gotoxy(10,15);
+//		printf("e: %d",key.center);
+//
+//		gotoxy(10,16);
+//		printf("i: %04d Random: %c", i, random);
+//		random = ' ';
+//		}
+
+
+
+		timeControll();
+		readJoystick();
+
+		writeLed();
+//		updateBuzz();
+
+
+//		gotoxy(1,5);
+//		printf("Update: %03d, Place: %03d",lcdUpdate, placeLCD);
+
+		gotoxy(1,6);
+		printf("R:%d, G:%d, B:%d",led.red, led.gre, led.blu);
+//
+//		gotoxy(1,4);
+//		printf("Tone: %06d",buzzTone);
+
+
+		//printf("String Length: %03d",strlen(navn));
+
+	}
 }
 
 
@@ -56,88 +156,3 @@ int main(void)
 
 
 
-
-void PRN(uint8_t *code, uint16_t N){
-    uint8_t P1[10] = { 1,1,1,1,1,1,1,1,1,1 }; // Register 1
-    uint8_t P2[10] = { 1,1,1,1,1,1,1,1,1,1 }; // Register 2
-    uint8_t FB1[2] = { 3,10 };                // Feedback locations for register 1
-    uint8_t FB2[6] = { 2,3,6,8,9,10 };        // Feedback locations for register 2
-    uint8_t O1[1]  = { 10 };                  // Output locations for register 1
-    uint8_t O2[2]  = { 2,6 }; 				  // Output locations for register 2
-    uint8_t tmp; 							  // Temporary storage
-    uint16_t i; 							  // Iteration variable
-
-    for (i = 0 ; i < N ; i++) {
-    	code[i] = getOutput(P1,P2,O1,O2,1,2);
-
-        // HANDLE REGISTER 1
-    	tmp = getFeedback(P1,FB1,2);
-        shift(P1);
-        P1[0] = tmp;
-
-        // HANDLE REGISTER 2
-        tmp = getFeedback(P2,FB2,6);
-        shift(P2);
-        P2[0] = tmp;
-    }
-}
-
-uint8_t getFeedback(uint8_t P[10], uint8_t *FB, uint8_t N){
-    uint8_t i, j;
-    uint8_t output = 0;
-    for (i = 0 ; i < N ; i++){
-        j = FB[i] - 1;
-        output ^= P[j];
-    }
-
-    return output;
-}
-
-void shift(uint8_t P[10]) {
-    uint8_t i;
-    for (i = 9 ; i > 0 ; i--){
-        P[i] = P[i-1];
-    }
-}
-
-uint8_t getOutput(uint8_t P1[10], uint8_t P2[10], uint8_t *O1, uint8_t *O2, uint8_t N1, uint8_t N2) {
-    uint8_t i, j;
-    uint8_t output = 0;
-    for (i = 0 ; i < N1 ; i++){
-        j = O1[i] - 1;
-        output ^= P1[j];
-    }
-    for (i = 0 ; i < N2 ; i++){
-        j = O2[i] - 1;
-        output ^= P2[j];
-    }
-
-    return output;
-}
-
-void PRN_alt(uint8_t* code, int16_t N){
-    uint16_t P1  = 0x3FF; // Register 1
-    uint16_t P2  = 0x3FF; // Register 2
-    uint16_t FB1 = 0x204; // Feedback locations for register 1
-    uint16_t FB2 = 0x3A6; // Feedback locations for register 2
-    uint16_t O1  = 0x200; // Output locations for register 1
-    uint8_t  O2  = 0x022; // Output locations for register 2
-    uint8_t  tmp; // Temporary storage
-    uint16_t i; // Iteration variable
-
-    for (i = 0 ; i < N ; i++) {
-    	tmp = (P1 & O1) ^ (P2 & O2); // Extract output bits
-		tmp ^= tmp >> 8; tmp ^= tmp >> 4; tmp ^= tmp >> 2; tmp ^= tmp >> 1; // Calculate digit sum (mod 2)
-		code[i] = tmp | 0x0001; // Return bit 0 of the output
-
-        // HANDLE REGISTER 1
-    	tmp = P1 & FB1; // Extract feedback bits
-    	tmp ^= tmp >> 8; tmp ^= tmp >> 4; tmp ^= tmp >> 2; tmp ^= tmp >> 1; // Calculate digit sum (mod 2)
-        P1 >>= 1; P1 &= 0xFFFE; P1 = tmp & 0x0001; // Shift bits and add feedback
-
-        // HANDLE REGISTER 2
-        tmp = P2 & FB2; // Extract feedback bits
-        tmp ^= tmp >> 8; tmp ^= tmp >> 4; tmp ^= tmp >> 2; tmp ^= tmp >> 1; // Calculate digit sum (mod 2)
-        P2 >>= 1; P2 &= 0xFFFE; P2 |= tmp & 0x0001; // Shift bits and add feedback
-    }
-}

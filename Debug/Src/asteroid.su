@@ -1,0 +1,13 @@
+asteroid.c:7:6:initAstro	4	static
+asteroid.c:32:6:asteroidUpdate	8	static
+asteroid.c:39:6:readjoy	4	static
+asteroid.c:54:6:readkey	8	static
+asteroid.c:72:6:smallship	16	static
+asteroid.c:89:6:shoot	4	static
+asteroid.c:97:6:moveBullet	8	static
+asteroid.c:108:6:drawBullet	32	static
+asteroid.c:156:6:asteroid1	16	static
+asteroid.c:204:6:asteroid2	16	static
+asteroid.c:230:6:clearAsteroSmall	16	static
+asteroid.c:243:6:drawAsteroidSmall	16	static
+asteroid.c:262:6:drawAsteroidMedium	16	static

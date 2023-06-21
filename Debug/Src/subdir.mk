@@ -6,27 +6,60 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Src/30010_io.c \
+../Src/Joystick.c \
+../Src/LCD.c \
+../Src/LED.c \
+../Src/LUTsin.c \
+../Src/Vector.c \
+../Src/Window.c \
 ../Src/ansi.c \
+../Src/asteroid.c \
+../Src/ball.c \
+../Src/buzzer.c \
+../Src/charset.c \
 ../Src/main.c \
 ../Src/syscalls.c \
 ../Src/sysmem.c \
-../Src/system_stm32f30x.c 
+../Src/system_stm32f30x.c \
+../Src/timer.c 
 
 OBJS += \
 ./Src/30010_io.o \
+./Src/Joystick.o \
+./Src/LCD.o \
+./Src/LED.o \
+./Src/LUTsin.o \
+./Src/Vector.o \
+./Src/Window.o \
 ./Src/ansi.o \
+./Src/asteroid.o \
+./Src/ball.o \
+./Src/buzzer.o \
+./Src/charset.o \
 ./Src/main.o \
 ./Src/syscalls.o \
 ./Src/sysmem.o \
-./Src/system_stm32f30x.o 
+./Src/system_stm32f30x.o \
+./Src/timer.o 
 
 C_DEPS += \
 ./Src/30010_io.d \
+./Src/Joystick.d \
+./Src/LCD.d \
+./Src/LED.d \
+./Src/LUTsin.d \
+./Src/Vector.d \
+./Src/Window.d \
 ./Src/ansi.d \
+./Src/asteroid.d \
+./Src/ball.d \
+./Src/buzzer.d \
+./Src/charset.d \
 ./Src/main.d \
 ./Src/syscalls.d \
 ./Src/sysmem.d \
-./Src/system_stm32f30x.d 
+./Src/system_stm32f30x.d \
+./Src/timer.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -36,7 +69,7 @@ Src/%.o: ../Src/%.c Src/subdir.mk
 clean: clean-Src
 
 clean-Src:
-	-$(RM) ./Src/30010_io.d ./Src/30010_io.o ./Src/ansi.d ./Src/ansi.o ./Src/main.d ./Src/main.o ./Src/syscalls.d ./Src/syscalls.o ./Src/sysmem.d ./Src/sysmem.o ./Src/system_stm32f30x.d ./Src/system_stm32f30x.o
+	-$(RM) ./Src/30010_io.d ./Src/30010_io.o ./Src/Joystick.d ./Src/Joystick.o ./Src/LCD.d ./Src/LCD.o ./Src/LED.d ./Src/LED.o ./Src/LUTsin.d ./Src/LUTsin.o ./Src/Vector.d ./Src/Vector.o ./Src/Window.d ./Src/Window.o ./Src/ansi.d ./Src/ansi.o ./Src/asteroid.d ./Src/asteroid.o ./Src/ball.d ./Src/ball.o ./Src/buzzer.d ./Src/buzzer.o ./Src/charset.d ./Src/charset.o ./Src/main.d ./Src/main.o ./Src/syscalls.d ./Src/syscalls.o ./Src/sysmem.d ./Src/sysmem.o ./Src/system_stm32f30x.d ./Src/system_stm32f30x.o ./Src/timer.d ./Src/timer.o
 
 .PHONY: clean-Src
 

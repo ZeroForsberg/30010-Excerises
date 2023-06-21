@@ -59,13 +59,17 @@ void resetbgcolor() {
 
 void clrscr() {
 	printf("%c[%s", ESC, "2J");
+	printf("%c[%s", ESC, "3J");
+	resetbgcolor();
+
+	gotoxy(0, 0);
 }
 
 void clreol() {
 	printf("%c[%s", ESC, "2k");
 }
 
-void gotoxy(int r, int c) {
+void gotoxy(int c, int r) {
 	printf("%c[%d;%dH", ESC, r, c);
 }
 
@@ -90,83 +94,3 @@ void blink(int state) {
 		printf("%c[%dm", ESC, 27);
 	}
 }
-
-void window(int x1, int y1, int x2, int y2, char s[], int style) {
-	int length = strlen(s);
-
-	int tl = 218; 	// ┌
-	int lsd = 180; 	// ┤
-	int bl = 192;	// └
-	int wll = 179;	// │
-	int btt = 196; 	// ─
-	int tr = 191; 	// ┐
-	int rsd = 195;	// ├
-	int br = 217;	// ┘
-
-	if (style == 2){
-		tl = 201; 	// ╔
-		lsd = 185; 	// ╣
-		bl = 200;	// ╚
-		wll = 186;	// ║
-		btt = 205; 	// ═
-		tr = 187; 	// ╗
-		rsd = 204;	// ╠
-		br = 188;	// ╝
-	}
-
-
-	if (x2 < length+6 | x2<x1){
-		x2 = x1 + length + 6;
-	}
-	if (y2<y1){
-		y2 = y1+1;
-	}
-
-
-	printf("\n\nx1:%d, y1:%d\nx2:%d, y2:%d\nString:%s Len:%d\n",x1,y1,x2,y2,s,length);
-
-	for (int i = 0; i < y1; i++){
-		printf("\n");
-	}
-
-
-		//Offset by x1
-		for (int i=0;i<x1;i++){
-			printf("%c",32);
-		}
-		printf("%c%c", tl, lsd);
-
-		//Top ┌┤ Text ├┐
-		blink(1);
-		printf("%c%s%c",32,s,32);
-		for(int i=0; i<x2-length-6 ;i++){
-			printf("%c",32);
-		}
-		blink(0);
-		printf("%c%c\n", rsd, tr);
-
-		//Mid │        │
-		for (int i = 1; i < y2-y1; i++) {
-			for (int k=0; k < x1; k++){
-				printf("%c",32);
-			}
-
-			printf("%c", wll);
-			for (int j = 0; j < x2-2; j++) {
-				printf("%c", 32);
-			}
-			printf("%c\n", wll);
-		}
-
-		//Bottom  └─────────┘
-		for (int i=0;i<x1;i++){
-			printf("%c",32);
-				}
-		printf("%c", bl);
-		for (int j = 0; j < x2-2; j++) {
-			printf("%c", btt);
-		}
-		printf("%c\n", br);
-
-
-	}
