@@ -1,4 +1,5 @@
 Src/timer.o: ../Src/timer.c \
+ C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/LED.h \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/ansi.h \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/LUTsin.h \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/stm32f30x_conf.h \
@@ -34,6 +35,8 @@ Src/timer.o: ../Src/timer.c \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/timer.h \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/joystick.h \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/ansi.h
+
+C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/LED.h:
 
 C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/ansi.h:
 

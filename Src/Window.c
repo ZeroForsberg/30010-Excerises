@@ -23,7 +23,7 @@ void window(int x1, int y1, int x2, int y2, char s[], int style) {
 		br = 188;	// ╝
 	}
 
-	if (x2 < length + 6 | x2 < y1) {
+	if ((x2 < length + 6) | (x2 < y1)) {
 		x2 = x1 + length + 6;
 	}
 	if (y2 < y1) {
@@ -103,7 +103,6 @@ void windowSmp(int x1, int y1, int x2, int y2) {
 
 void windowBall(boarder b, char s[], ball_st *o) {
 	int length = strlen(s);
-	int hit = 2;
 
 	int32_t x1 = b.x1;
 	int32_t y1 = b.y1;
@@ -121,7 +120,7 @@ void windowBall(boarder b, char s[], ball_st *o) {
 	int br = 188;	// ╝
 
 
-	if (x2 < length + 6 | x2 < y1) {
+	if ((x2 < length + 6) | (x2 < y1)) {
 		x2 = x1 + length + 6;
 	}
 	if (y2 < y1) {

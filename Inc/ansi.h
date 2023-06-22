@@ -12,6 +12,13 @@
 void fgcolor(uint8_t foreground);
 void bgcolor(uint8_t background);
 void color(uint8_t foreground, uint8_t background);
+void resetbgcolor();
+void clrscr();
+void gotoxy(int c, int r);
+void underline(int state);
+void blink(int state);
+void windowSmp();
+
 
 #define FIX14_SHIFT 14
 #define FIX14_MULTI(a, b) 	( (a) * (b) >> FIX14_SHIFT)
@@ -32,18 +39,14 @@ typedef struct{
 } boarder;
 
 
-typedef struct{
-	int8_t hr, mn, sk, ml, state;
-} time_s;
 
 typedef struct{
 	int red, blu, gre;
 } led_s;
-
-
-
-volatile time_s t;
 volatile led_s led;
+
+
+
 
 
 volatile int lcdUpdate, refreshRate, placeLCD;

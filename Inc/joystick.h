@@ -3,6 +3,9 @@
 #ifndef JOYSTICK_H_
 #define JOYSTICK_H_
 
+void intiJoystick();
+void readJoystick();
+
 typedef struct{
 	int8_t up, down, left , right, center;
 } reJoy_s;

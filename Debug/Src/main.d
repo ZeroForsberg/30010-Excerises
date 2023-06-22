@@ -1,4 +1,5 @@
 Src/main.o: ../Src/main.c \
+ C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/LED.h \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/stm32f30x_conf.h \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/SPL/inc/stm32f30x_adc.h \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/stm32f30x.h \
@@ -38,6 +39,8 @@ Src/main.o: ../Src/main.c \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/joystick.h \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/ansi.h \
  C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/asteroid.h
+
+C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/LED.h:
 
 C:/Users/alexg/OneDrive/Dokumenter/STM32/BaseProject/Inc/stm32f30x_conf.h:
 

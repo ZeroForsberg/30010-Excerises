@@ -30,12 +30,7 @@ void initTimer2(){
 }
 
 void TIM2_IRQHandler(void) {
-/*
-	static int i;
-	gotoxy(1,4);
-	printf("This is Tim2: %d",i);
-	i++;
-*/
+
 
 //Do whatever you want here, but make sure it doesn’t take too much Time.
 TIM2->SR &= ~0x0001; // Clear interrupt bit
@@ -95,6 +90,56 @@ void playTone(char s[]){
 	int length = strlen(s);
 
 	switch(s[i]){
+	case '1':
+		i++;
+		switch(s[i]){
+			case 'c':
+				buzzTone = 33;
+				break;
+			case 'C':
+				buzzTone = 35;
+				break;
+
+			case 'd':
+				buzzTone = 37;
+				break;
+			case 'D':
+				buzzTone = 39;
+				break;
+
+			case 'e':
+				buzzTone = 41;
+				break;
+
+			case 'f':
+				buzzTone = 44;
+				break;
+			case 'F':
+				buzzTone = 46;
+				break;
+
+			case 'g':
+				buzzTone = 49;
+				break;
+			case 'G':
+				buzzTone = 52;
+				break;
+
+			case 'a':
+				buzzTone = 55;
+				break;
+			case 'A':
+				buzzTone = 58;
+				break;
+
+			case 'b':
+				buzzTone = 62;
+				break;
+			default:
+				buzzTone = 0;
+				break;
+		}
+		break;
 	case '2':
 		i++;
 		printf("%c",s[i]);
@@ -316,16 +361,6 @@ void playTone(char s[]){
 	i++;
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

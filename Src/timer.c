@@ -1,7 +1,9 @@
+#include <LED.h>
 #include "ansi.h"
 #include "stm32f30x_conf.h"
 #include "timer.h"
 #include "joystick.h"
+#include "LED.h"
 
 void initTimer(){
 
@@ -17,18 +19,15 @@ void initTimer(){
 
 
 void TIM1_BRK_TIM15_IRQHandler(void) {
-	static int8_t state;
 
 	lcdUpdate++;
 	if (lcdUpdate >= refreshRate){
 
 		if (timeState == 0){
 			timeState = 1;
-
 		}
 		else if (timeState == 1){
 			timeState = 0;
-
 		}
 
 		placeLCD--;
@@ -64,9 +63,13 @@ TIM15->SR &= ~0x0001; // Clear interrupt bit
 }
 
 void drawTime(){
+	static int hp;
+	int red = 0, green = 0, yellow = 0, x = t.sk + (t.mn * 60);
 
-	int x = t.sk + (t.mn * 60);
-	int y = 40;
+	char greenS[] = "1G  1f 1G  1f 1G  1f 1G  1f 1G 1f 1D 1e 1f 1G  1f 1G  1f 1G  1f 1G  1f 1G 1f 1D1e1f 2c  1G 2c  1G 2c  1G 2c  1G 2c 1G 1g1g1G 2c  1G 2c  1G 2c  1G 2c  1G 2c 1G 1g1g1G  ";
+	char yellowS[] = " 2G2G2G2A2B2B2A2G2G2A2B2B2A2G";
+	char redS[] = " 3C3C3C3D3E3E3D3C3C3D3E3E3D3C";
+
 
 	gotoxy(15,1);
 	printf("%02d:%02d:%02d | %d | %03d", t.mn, t.sk, t.ml, t.state,x);
@@ -78,6 +81,7 @@ void drawTime(){
 	gotoxy(2,3);
 	t.state ? blink(1): blink(0);
 	if (x>=80){
+		hp = 1;
 		fgcolor(2); // green
 		for (int i = 0; i < x-80; i++){
 			printf("%c",178);
@@ -88,6 +92,7 @@ void drawTime(){
 		}
 	}
 	else if (x>=40){
+		hp = 2;
 		fgcolor(11); // yellow
 		for (int i = 0; i < x-40; i++){
 			printf("%c",178);
@@ -98,6 +103,9 @@ void drawTime(){
 		}
 	}
 	else if (x<40){
+		hp = 3;
+
+		led.red = t.state;
 		fgcolor(1); // red
 		for (int i = 0; i < x; i++){
 			printf("%c",178);
@@ -107,101 +115,50 @@ void drawTime(){
 			printf("%c",32);
 		}
 	}
+	else if (x = 0){
+		hp = 0;
+	}
 
 	blink(0);
 	resetbgcolor();
 
-}
-
-
-void windowTimer() {
-
-	int x1 = 10;
-	int y1 = 10;
-	int x2 = 43;
-	int y2 = x1+5;
-
-	char s[] = "Stop Watch";
-	char l1[] = "Time since start:";
-	char l2[] = "Split time 1:";
-	char l3[] = "split time 2:";
-
-	char *arrl[] = {"Time since start:", "Split time 1:", "Split time 1:"};
-
-	int length = strlen(s);
-
-	int tl = 218; 	// ┌
-	int lsd = 180; 	// ┤
-	int bl = 192;	// └
-	int wll = 179;	// │
-	int btt = 196; 	// ─
-	int tr = 191; 	// ┐
-	int rsd = 195;	// ├
-	int br = 217;	// ┘
-
-	if (x2 < length + 6 | x2 < y1) {
-		x2 = x1 + length + 6;
-	}
-	if (y2 < y1) {
-		y2 = y1 + 1;
+	switch(hp){
+		case 0:
+			red = 0;
+			green = 0;
+			break;
+		case 1:
+			green = !t.state | timeState;
+			break;
+		case 2:
+			yellow = !t.state | timeState;
+			break;
+		case 3:
+			red = !t.state | timeState;
+			break;
 	}
 
-	blink(0);
-	//Debug
-	//printf("\n\nx1:%d, y1:%d\nx2:%d, y2:%d\nString:%s Len:%d\n", x1, y1, x2, y2,s, length);
+	led.gre = green | yellow;
+	led.red = red | yellow;
 
-
-	//Top ┌┤ Text ├┐
-	gotoxy(x1, y1);
-	printf("%c%c", tl, lsd);
-	blink(1);
-		printf("%c%s%c", 32, s, 32);
-		for (int i = x1; i < x2 - length - 6; i++) {
-			printf("%c", 32);
+	if (t.state){
+		if(green & timeState ){
+			playTone(greenS);
 		}
-	blink(0);
-	printf("%c%c\n", rsd, tr);
-
-	//Mid │        │
-	for (int i = y1+1; i < y2; i++) {
-		gotoxy(x1, i);
-		printf("%c", wll);
-		gotoxy(x2-1,i);
-		printf("%c", wll);
+		else if(yellow & timeState ){
+			playTone(yellowS);
+		}
+		else if(red & timeState){
+			playTone(redS);
+		}
 	}
-
-	//Bottom  └─────────┘
-	gotoxy(x1,y2);
-	printf("%c", bl);
-	for (int i=x1; i < x2-2; i++){
-		printf("%c", btt);
-	}
-	printf("%c\n", br);
-
-
-	for(int i = 0; i<=2;i++){
-		gotoxy(x1+2, y1+2+i);
-		printf("%s", arrl[i]);
-
-		gotoxy(x1+21,y1+2+i);
-		printf("-:--:--.--");
+	else {
+		setFreq(0);
 	}
 
 }
 
 
-void splitTime1(int i){
-	int a = t.ml;
-	int b = t.sk;
-	int c = t.mn;
-	int d = t.hr;
-
-
-	int x1 = 10, y1 = 10, x2 = 60, y2 = x1+5;
-
-		gotoxy(x1+21,y1+2+i);
-		printf("%01d:%02d:%02d.%02d", d, c, b, a);
-}
 
 void resetTime(){
 	t.ml = 0;
@@ -212,7 +169,6 @@ void resetTime(){
 
 
 void timeControll(){
-
 	readJoystick();
 
 	if(joy.up){
@@ -224,8 +180,6 @@ void timeControll(){
 	else if (joy.right){
 		resetTime();
 	}
-
-
 
 }
 

@@ -14,7 +14,6 @@ C_SRCS += \
 ../Src/Window.c \
 ../Src/ansi.c \
 ../Src/asteroid.c \
-../Src/ball.c \
 ../Src/buzzer.c \
 ../Src/charset.c \
 ../Src/main.c \
@@ -33,7 +32,6 @@ OBJS += \
 ./Src/Window.o \
 ./Src/ansi.o \
 ./Src/asteroid.o \
-./Src/ball.o \
 ./Src/buzzer.o \
 ./Src/charset.o \
 ./Src/main.o \
@@ -52,7 +50,6 @@ C_DEPS += \
 ./Src/Window.d \
 ./Src/ansi.d \
 ./Src/asteroid.d \
-./Src/ball.d \
 ./Src/buzzer.d \
 ./Src/charset.d \
 ./Src/main.d \
@@ -69,7 +66,7 @@ Src/%.o: ../Src/%.c Src/subdir.mk
 clean: clean-Src
 
 clean-Src:
-	-$(RM) ./Src/30010_io.d ./Src/30010_io.o ./Src/Joystick.d ./Src/Joystick.o ./Src/LCD.d ./Src/LCD.o ./Src/LED.d ./Src/LED.o ./Src/LUTsin.d ./Src/LUTsin.o ./Src/Vector.d ./Src/Vector.o ./Src/Window.d ./Src/Window.o ./Src/ansi.d ./Src/ansi.o ./Src/asteroid.d ./Src/asteroid.o ./Src/ball.d ./Src/ball.o ./Src/buzzer.d ./Src/buzzer.o ./Src/charset.d ./Src/charset.o ./Src/main.d ./Src/main.o ./Src/syscalls.d ./Src/syscalls.o ./Src/sysmem.d ./Src/sysmem.o ./Src/system_stm32f30x.d ./Src/system_stm32f30x.o ./Src/timer.d ./Src/timer.o
+	-$(RM) ./Src/30010_io.d ./Src/30010_io.o ./Src/Joystick.d ./Src/Joystick.o ./Src/LCD.d ./Src/LCD.o ./Src/LED.d ./Src/LED.o ./Src/LUTsin.d ./Src/LUTsin.o ./Src/Vector.d ./Src/Vector.o ./Src/Window.d ./Src/Window.o ./Src/ansi.d ./Src/ansi.o ./Src/asteroid.d ./Src/asteroid.o ./Src/buzzer.d ./Src/buzzer.o ./Src/charset.d ./Src/charset.o ./Src/main.d ./Src/main.o ./Src/syscalls.d ./Src/syscalls.o ./Src/sysmem.d ./Src/sysmem.o ./Src/system_stm32f30x.d ./Src/system_stm32f30x.o ./Src/timer.d ./Src/timer.o
 
 .PHONY: clean-Src
 

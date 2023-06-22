@@ -29,7 +29,6 @@
 "./Src/Window.o"
 "./Src/ansi.o"
 "./Src/asteroid.o"
-"./Src/ball.o"
 "./Src/buzzer.o"
 "./Src/charset.o"
 "./Src/main.o"

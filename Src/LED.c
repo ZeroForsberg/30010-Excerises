@@ -2,6 +2,11 @@
 #include "ansi.h"
 
 void initLed(){
+
+	RCC->AHBENR |= RCC_AHBPeriph_GPIOA;
+	RCC->AHBENR |= RCC_AHBPeriph_GPIOB;
+	RCC->AHBENR |= RCC_AHBPeriph_GPIOC;
+
 	// Set pin PA9 to output - BLUE LED
 	GPIOA->OSPEEDR &= ~(0x00000003 << (9 * 2)); // Clear speed register
 	GPIOA->OSPEEDR |= (0x00000002 << (9 * 2)); // set speed register
@@ -61,7 +66,7 @@ void writeLed(){
 
 	// Right - Blue
 	if(led.blu){
-		GPIOA->ODR &= (0x0000 << 9); //Set pin PA9 to low - on
+		GPIOA->ODR &= ~(0x0001 << 9); //Set pin PA9 to low - on
 	}
 	else{
 		GPIOA->ODR |= (0x0001 << 9); //Set pin PA9 to high - off
@@ -70,7 +75,7 @@ void writeLed(){
 
 	// Up - Green
 	if(led.gre){
-		GPIOC->ODR &= (0x0000 << 7); //Set pin PC7 to low - on
+		GPIOC->ODR &= ~(0x0001 << 7); //Set pin PC7 to low - on
 	}
 	else{
 		GPIOC->ODR |= (0x0001 << 7); //Set pin PC7 to high - off
@@ -79,12 +84,10 @@ void writeLed(){
 
 	// Left - Red
 	if(led.red){
-		GPIOB->ODR &= (0x0000 << 4); //Set pin PB4 to low - on
+		GPIOB->ODR &= ~(0x0001 << 4); //Set pin PB4 to low - on
 	}
 	else{
 		GPIOB->ODR |= (0x0001 << 4); //Set pin PB4 to high - off
 	}
 
 }
-
-

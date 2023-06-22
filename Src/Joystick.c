@@ -1,3 +1,4 @@
+#include <LED.h>
 #include "stm32f30x_conf.h" // STM32 config
 #include "ansi.h"
 #include "joystick.h"
@@ -82,11 +83,11 @@ void intiJoystick(){
 
 
 void readJoystick(){
-	int32_t a = GPIOC->IDR & (0x0001 << 0); //Read from pin PCx - right
-	int32_t b = GPIOA->IDR & (0x0001 << 4); //Read from pin PCx - up
-	int32_t c = GPIOB->IDR & (0x0001 << 5); //Read from pin PCx - center
-	int32_t d = GPIOC->IDR & (0x0001 << 1); //Read from pin PCx - left
-	int32_t e = GPIOB->IDR & (0x0001 << 0); //Read from pin PCx - down
+	uint8_t a = GPIOC->IDR & (0x0001 << 0); //Read from pin PCx - right
+	uint8_t b = GPIOA->IDR & (0x0001 << 4); //Read from pin PCx - up
+	uint8_t c = GPIOB->IDR & (0x0001 << 5); //Read from pin PCx - center
+	uint8_t d = GPIOC->IDR & (0x0001 << 1); //Read from pin PCx - left
+	uint8_t e = GPIOB->IDR & (0x0001 << 0); //Read from pin PCx - down
 
 
 	if(b){b = 1;}
@@ -105,13 +106,6 @@ void readJoystick(){
 	gotoxy(1,8);
 	printf("Joys: %d%d%d%d%d",a,b,c,d,e);
 	}
-
-	led.gre = joy.up;
-	led.red = joy.down;
-	led.blu = joy.right;
-
-
-
 
 }
 
