@@ -35,8 +35,8 @@ int main(void) {
 //
 //	char virus[] ="2e  2a  2b  3c      3d  2b      3c  2a          2a 2G 2a 2b 3c 3d 3e    3e    3e    3e    3e            3d  3e  3f        2b    3c  3d  3e        2a    2a  2b  3c      3d  2b      3c  2a          2e  2a  2b  3c      3d  2b      3c  2a          2a 2G 2a 2b 3c 3d 3e    3e    3e    3e    3e            3d  3e  3f        2b    3c  3d  3e        2a    2a  2b  3c      3d  2b      3c  2a          2e  2a  2b  3c      3d  2b      3c  2a          2a  2G  2a  2b  2e  2D  2e  2b  2e  3e  3d  3d  3c  2b  2a  2a  2b  3c  2a  2b  2g  2F  2g  2b  2g  3g  3f  3f  3e  3d  3c  3c  3d  3e  3c  3C  2a  3C  3e  3a    3g    3f  3e  3d  3C  3d  2a  2G  2a                            3a  3b  3e  3e      3d 3c 2b  3c  3d  2e  3c  2b  2a  2G  2a  2b  3c  2a  2b     2g  2b  3g                 2b              3A  3g  3A  3e  3a  3g  3a  3f  3a  3e  3a  3D      2b  3D  4c    3D    3b    2d  2e  2f  2g  2f  2e  2d          2e  2a  2b  3c      3d  2b      3c  2a          2a 2G 2a 2b 3c 3d 3e    3e    3e    3e    3e            3d  3e  3f        2b    3c  3d  3e        2a    2a  2b  3c      3d  2b      3c  2a          2e  2a  2b  3c      3d  2b      3c  2a          2a 2G 2a 2b 3c 3d 3e    3e    3e    3e    3e            3d  3e  3f        2b    3c  3d  3e        2a    2a  2b  3c      3d  2b      3c  2a          2e  2a  2b  3c      3d  2b      3c  2a          2e  2a  2b  3c    3d  2b    3c  2a      2a  2G  2a  2b  3c  3d  3e    3e  3e    3e  3a      3d  3e  3f      2b  3c  3d  3e      2a    3c    2b                                                       ";
 
-	t.mn = 0;
-	t.sk = 10;
+	t.mn = 2;
+	t.sk = 0;
 	t.state = 0;
 
 //	windowSmp(1,2,43,4);
@@ -47,15 +47,19 @@ int main(void) {
 	char random;
 	int buffer_lenght;
 
-	helpScreen();
+
+//	helpScreen();
+//	GameOver();
 
 	while (1) {
 
 		if (lcdUpdate == 0){
 //			playTone(virus);
 
-//			drawTime();
+			drawTime();
 //			asteroidUpdate();
+
+
 		}
 
 

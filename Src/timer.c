@@ -32,6 +32,7 @@ void TIM1_BRK_TIM15_IRQHandler(void) {
 
 		placeLCD--;
 		lcdUpdate = 0;
+
 	}
 
 
@@ -54,6 +55,7 @@ void TIM1_BRK_TIM15_IRQHandler(void) {
 			t.mn = 0;
 			t.sk = 0;
 			t.ml = 0;
+			GameOver();
 		}
 
 	}
@@ -71,14 +73,14 @@ void drawTime(){
 	char redS[] = " 3C3C3C3D3E3E3D3C3C3D3E3E3D3C";
 
 
-	gotoxy(15,1);
-	printf("%02d:%02d:%02d | %d | %03d", t.mn, t.sk, t.ml, t.state,x);
+	gotoxy(132,3);
+	printf("%02d:%02d:%02d", t.mn, t.sk, t.ml);
 //	gotoxy(2,3);
 //	for (int i = 0; i < 40; i++){
 //		printf("%c",32);
 //	}
 
-	gotoxy(5,10);
+	gotoxy(142,3);
 	t.state ? blink(1): blink(0);
 	if (x>=80){
 		hp = 1;
